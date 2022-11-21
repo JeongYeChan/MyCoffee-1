@@ -30,7 +30,7 @@ public interface DriverService {
 	/*근무종료*/
 	public boolean endDriver(String did);
 	
-	/* 배달원 주문 확인 */
+	/* 배달원 주문 확인 */ 
 	public List<DriverInfo> getOrder(String did);
 	
 	public DriverVO getDriver(String did);

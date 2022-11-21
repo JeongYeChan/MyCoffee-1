@@ -227,7 +227,7 @@ public class DriverController {
 	@PostMapping("/list/approve")
 	public String approveRegist(DriverVO driver) {
 		driverservice.approveRegist(driver);
-		return "redirect: /driver/member/list";
+		return "redirect: /driver/member/list"; 
 	}
 
 	@PostMapping("/list/reject")

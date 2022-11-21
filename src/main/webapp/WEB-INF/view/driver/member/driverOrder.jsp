@@ -77,7 +77,7 @@
                             <h5>주문번호</h5>
                             <p>${order.oid}</p>
                         </div>
-                    </div>
+                    </div> 
                     <p class="${order.status==3?'text-danger':'text-primary'}">${order.status2}</p>
                 </div>
             </div>

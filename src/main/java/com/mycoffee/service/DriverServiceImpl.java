@@ -165,7 +165,7 @@ public class DriverServiceImpl implements DriverService{
 	}
 
 	@Override
-	public void confirmRegist(DriverInfo driver) {
+	public void confirmRegist(DriverInfo driver) { 
 		driver.setStatus(5);
 		drivermapper.updateStatus(driver);
 		
