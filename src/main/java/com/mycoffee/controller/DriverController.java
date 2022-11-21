@@ -236,6 +236,18 @@ public class DriverController {
 		return "redirect: /driver/member/list";
 	}
 	
+	@PostMapping("/driverOrder/delivery")
+	public String deliveryRegist(DriverInfo driver) {
+		driverservice.deliveryRegist(driver);
+		return "redirect: /driver/member/driverOrder/delivery";
+	}
+	
+	@PostMapping("/driverOrder/confirm")
+	public String confirmRegist(DriverInfo driver) {
+		driverservice.confirmRegist(driver);
+		return "redirect: /driver/member/driverOrder/confirm";
+	}
+	
 //	@PostMapping("/driverOrder/status")
 //	public String driverStatus(DriverInfo driver) {
 //		driverservice.driverStatus(driver);

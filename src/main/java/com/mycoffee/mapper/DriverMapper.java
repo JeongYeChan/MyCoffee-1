@@ -38,5 +38,5 @@ public interface DriverMapper {
 	public boolean deleteDriver(String did);
 	
 	public int updateStatus(DriverInfo dvo);
-	
+
 }

@@ -51,4 +51,10 @@ public interface DriverService {
 	
 //	public boolean driverStatus(DriverInfo driver);
 	
+	/* 배달 접수 */
+	public void deliveryRegist(DriverInfo driver);
+	
+	/* 배달 완료 */
+	public void confirmRegist(DriverInfo driver);
+	
 }

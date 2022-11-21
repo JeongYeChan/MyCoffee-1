@@ -157,6 +157,27 @@ public class DriverServiceImpl implements DriverService{
 		log.info(did);
 		return drivermapper.deleteDriver(did);
 	}
+	
+	@Override
+	public void deliveryRegist(DriverInfo driver) {
+		driver.setStatus(4);
+		drivermapper.updateStatus(driver);
+	}
+
+	@Override
+	public void confirmRegist(DriverInfo driver) {
+		driver.setStatus(5);
+		drivermapper.updateStatus(driver);
+		
+//		if(driver.getStatus()==3) {
+//			driver.setStatus(4);
+//			drivermapper.updateStatus(driver);
+//		}else {
+//			driver.setStatus(5);
+//			drivermapper.updateStatus(driver);
+//		}
+	}
+
 
 //	@Override
 //	public boolean driverStatus(DriverInfo driver) {

@@ -16,6 +16,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+    	const itemForm = $("#itemForm")
+    	
         $("div.card-header").on("click", function (e) {
             const cardIcon = $(this).find("img");
             const cardBody = $(this).next();
@@ -28,6 +30,20 @@
                 cardIcon.attr("src", "/resources/img/togle.png");
             }
         });
+        
+    	$("#btnConfirm").on("click", function(e){
+    		let uri = "/driver/member/driverOrder/delivery";
+    		if($(this).is(${status==4})){
+    			uri = "/driver/member/driverOrder/confirm";
+    		}
+    	});
+    	
+//         $("#btnConfirm").on("click", function(e){
+// 			itemForm.attr("action", "/driver/member/driverOrder/confirm");
+// 			itemForm.submit();
+//         });
+
+		
 
     });
 </script>
@@ -46,6 +62,7 @@
 <body>
 	<%@include file="../../driver/include/menu.jsp" %>   
 
+	<form id="itemForm" action="#" method="post">
 	<div class="container mt-3 driver-orders">
 	<c:set var="newOrder" value="0"/>
 	<c:forEach items="${order}" var="order" varStatus="status">
@@ -68,7 +85,7 @@
                 <div class="d-flex justify-content-between">
                     <h5>주문 내역</h5>
                     <c:if test="${order.status<5}">
-                    <button class="btn ${order.status==3?'btn-primary':'btn-warning'}">${order.status==3?'접수':'완료'}</button>
+                    <button type="button" id="btnConfirm" class="btn ${order.status==3?'btn-primary':'btn-warning'}">${order.status==3?'접수':'완료'}</button>
                     </c:if>
                 </div>
                 <p>${order.orderdetail}</p>
@@ -77,74 +94,10 @@
             </div>
         </div>
 	</c:forEach>
+	<p>
 	</div>
+	</form>
 
-	<c:forEach items="${order}" var="order" varStatus="status">
-		<table>
-			<div class="faq-content" id="${status.count}">
-	<!-- 		<div class="faq-content"> -->
-			
-				<button class="question" id="que${status.count+1}">
-				
-	<%-- 		  		<span id="que${status.count+1}-toggle"> --%>
-	<!-- 		  			<img src="../../resources/img/togle2.png">주문번호 -->
-	<!-- 		  		</span> -->
-			  		
-			  		<span>- 주문번호</span><p/>
-			  		<br>${order.oid}
-			  		
-	 				<!-- tbl_codes (배달대기 3, 배달중 4, 배달완료 5 /tbl_order (status -->
-	 				<!-- 확인/완료 버튼 클릭 시 tbl_order status변경 -->
-	 				
-			  		<div class="btn btn-secondary" id="del${status.count+1}">
-			  			${order.status2}
-			  		</div>
-			  		
-				</button>
-				
-				<div class="answer" id="ans${status.count+1}">
-				
-					<p><span>주문내역</span>
-					<p><c:out value="${order.orderdetail}" />
-					<p><span>고객주소</span>
-					<p><c:out value="${order.address}" />
-					
-					<!-- 배달대기 ->확인 / 배달완료 -> 완료 -->
-					<p>
-					<c:if test="${order.status<  5}">
-					<button type="button" class="btn-secondary" id="conf${status.count+1}">
-						${order.status == 3 ? "확인" : "완료" }
-					</button>
-					</c:if>
-				</div>
-				
-			</div>
-		
-		</table>
-	</c:forEach>
-	
 </body>
-<script>
-const cnt = ${newOrder};
-const newOrder = $("#newOrder");
-console.log(cnt);
-console.log(newOrder.text(cnt));
 
-const items = document.querySelectorAll('.question');
-
-function openCloseAnswer() {
-  const answerId = this.id.replace('que', 'ans', 'del' , 'conf');
-
-  if(document.getElementById(answerId).style.display === 'block') {
-    document.getElementById(answerId).style.display = 'none';
-    document.getElementById(this.id + '-toggle').textContent = '+';
-  } else {
-    document.getElementById(answerId).style.display = 'block';
-    document.getElementById(this.id + '-toggle').textContent = '-';
-  }
-}
-
-items.forEach(item => item.addEventListener('click', openCloseAnswer));
-
-</script>	
 </html>
